@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    This is user page
-</body>
-</html>
+<?= $this->extend('layouts/main_layout') ?>
+
+<?= $this->section('content') ?>
+<h2>User Dashboard</h2>
+
+<!-- Additional dashboard content here -->
+<?= $this->endSection() ?>

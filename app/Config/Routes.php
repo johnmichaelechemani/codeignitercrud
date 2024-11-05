@@ -15,10 +15,9 @@ $routes->group('user', function ($routes) {
     $routes->post('update-profile', 'UserController::update');   // Update profile
 });
 
-
-$routes->group('admin', function ($routes) {
-    $routes->get('dashboard', 'AdminController::dashboard');       // Admin dashboard
-    $routes->get('users', 'AdminController::listUsers');           // List all users
-    $routes->post('create-user', 'AdminController::createUser');   // Create a new user
-    $routes->get('settings', 'AdminController::settings');         // Admin settings
+$routes->group('admin', ['filter' => 'auth'], function ($routes) {
+    $routes->get('dashboard', 'AdminController::listUsers'); // Admin dashboard
+    $routes->get('users', 'AdminController::listUsers');     // List all users
+    $routes->post('create-user', 'AdminController::createUser'); // Create a new user
+    $routes->get('settings', 'AdminController::settings');     // Admin settings
 });

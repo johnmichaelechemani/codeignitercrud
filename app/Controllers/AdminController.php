@@ -1,11 +1,17 @@
 <?php
 namespace App\Controllers;
+use App\Models\UserModel; // Make sure to import the UserModel
 
 class AdminController extends BaseController
 {
     public function dashboard()
     {
-        return view('admin/dashboard');   // Loads app/Views/admin/dashboard.php
+        $model = new UserModel();
+
+        // Fetch all users from the database
+        $data['users'] = $model->findAll(); // You can also use other methods like where() for filtering
+
+        return view('admin/dashboard', $data); // Pass the user data to the view
     }
 
     public function listUsers()
