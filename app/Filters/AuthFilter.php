@@ -13,6 +13,7 @@ class AuthFilter implements FilterInterface
         // Check if the user is logged in. This is a simple example using session.
         $session = session();
         if (!$session->get('isLoggedIn')) {
+            $session->setFlashdata('error', 'You need to log in first.');
             // If the user is not logged in, redirect to the login page
             return redirect()->to('/'); // Change '/login' to your actual login route
         }
