@@ -39,9 +39,11 @@
                             <tr>
                                 <td class="border border-slate-700/20"><?= esc($task['id']) ?></td>
                                 <td class="border border-slate-700/20"><?= esc($task['name']) ?></td>
-                                <td class="flex justify-center items-center gap-2"><button
-                                        class="px-4 py-2 my-2 w-full bg-green-500 text-white rounded-md font-semibold text-sm">Edit</button><button
-                                        class="px-4 py-2 my-2 w-full bg-red-500 text-white rounded-md font-semibold text-sm">Delete</button>
+                                <td class="flex justify-center items-center gap-2">
+                                    <a href="<?= site_url('admin/edit_task/' . $task['id']) ?>"
+                                        class="px-4 py-2 my-2 w-full bg-green-500 text-white rounded-md font-semibold text-sm">Edit</button>
+                                        <a href="<?= site_url('admin/delete_task/' . $task['id']) ?>"
+                                            class="px-4 py-2 my-2 w-full bg-red-500 text-white rounded-md font-semibold text-sm">Delete</a>
                                 </td>
 
                             </tr>
