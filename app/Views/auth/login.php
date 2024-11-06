@@ -12,10 +12,13 @@
             </div>
         <?php endif; ?>
         <div>
-            <form action="<?= site_url('login') ?>" method="post">
+            <form action="<?= site_url('auth/login') ?>" method="post">
+
+                <?= csrf_field() ?>
                 <div>
-                    <input type="text" name="name" class="border border-gray-500 p-2 rounded-md" placeholder="name">
-                    <input type="text" name="password" class="border border-gray-500 p-2 rounded-md"
+                    <input type="text" required name="name" class="border border-gray-500 p-2 rounded-md"
+                        placeholder="name">
+                    <input type="text" required name="password" class="border border-gray-500 p-2 rounded-md"
                         placeholder="password">
                 </div>
                 <button type="submit"
