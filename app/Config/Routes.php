@@ -33,7 +33,7 @@ $routes->group('user', ['filter' => 'auth'], function ($routes) {
 });
 //admin
 $routes->group('admin', ['filter' => 'auth'], function ($routes) {
-    $routes->get('dashboard', 'AdminController::listUsers'); // Admin dashboard
+    $routes->get('dashboard', 'AdminController::dashboard'); // Admin dashboard
     $routes->get('users', 'AdminController::listUsers');     // List all users
     $routes->post('create-user', 'AdminController::createUser'); // Create a new user
     $routes->get('settings', 'AdminController::settings');     // Admin settings
