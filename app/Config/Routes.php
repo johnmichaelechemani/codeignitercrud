@@ -12,9 +12,6 @@ $routes->get('/', 'Home::index');
 $routes->get('db-test', 'DatabaseTest::index');
 //logout
 $routes->get('auth/logout', 'Logout::logout');
-
-
-
 $routes->group('auth', function ($routes) {
     //login
     $routes->get('login', 'Login::index');
@@ -23,21 +20,16 @@ $routes->group('auth', function ($routes) {
     $routes->get('register', 'Register::index');
     $routes->post('register', 'Register::store');
 });
-
 //user
 $routes->group('user', ['filter' => 'auth'], function ($routes) {
     $routes->get('dashboard', 'UserController::dashboard');
-
 });
 //admin
 $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->get('dashboard', 'AdminController::dashboard');
-    // add task
+    // Admin Task Management
     $routes->get('dashboard', 'AdminController::indexTask');
     $routes->post('dashboard', 'AdminController::postTask');
-
-    // manage tasks
-    // Admin Task Management
     // $routes->get('admin/edit_task/(:num)', 'AdminController::editTask/$1');
     // $routes->post('admin/update_task/(:num)', 'AdminController::updateTask/$1');
     $routes->get('delete_task/(:num)', 'AdminController::deleteTask/$1');
