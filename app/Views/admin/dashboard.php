@@ -8,21 +8,27 @@
             <table class="border-collapse border border-slate-500 ">
                 <thead>
                     <tr>
-                        <th class="border border-slate-600 ">Id</th>
-                        <th class="border border-slate-600 ">Name</th>
+                        <th class="border border-slate-600/50 px-4 py-2 ">Id</th>
+                        <th class="border border-slate-600/50 px-4 py-2">Name</th>
+                        <th rowspan="2" class="border border-slate-600/50 px-4 py-2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (!empty($users) && is_array($users)): ?>
-                        <?php foreach ($users as $user): ?>
+                    <?php if (!empty($tasks) && is_array($tasks)): ?>
+                        <?php foreach ($tasks as $task): ?>
                             <tr>
-                                <td class="border border-slate-700"><?= esc($user['id']) ?></td>
-                                <td class="border border-slate-700"><?= esc($user['name']) ?></td>
+                                <td class="border border-slate-700/20"><?= esc($task['id']) ?></td>
+                                <td class="border border-slate-700/20"><?= esc($task['name']) ?></td>
+                                <td class="flex justify-center items-center gap-2"><button
+                                        class="px-4 py-2 my-2 w-full bg-green-500 text-white rounded-md font-semibold text-sm">Edit</button><button
+                                        class="px-4 py-2 my-2 w-full bg-red-500 text-white rounded-md font-semibold text-sm">Delete</button>
+                                </td>
+
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="2" class="border border-slate-700 text-center">No users found.</td>
+                            <td colspan="2" class="border border-slate-700 text-center">No task found.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
