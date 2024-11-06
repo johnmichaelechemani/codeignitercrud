@@ -15,7 +15,7 @@ class AuthFilter implements FilterInterface
         if (!$session->get('isLoggedIn')) {
             $session->setFlashdata('error', 'You need to log in first.');
             // If the user is not logged in, redirect to the login page
-            return redirect()->to('/'); // Change '/login' to your actual login route
+            return redirect()->to('auth/login'); // Change '/login' to your actual login route
         }
     }
 

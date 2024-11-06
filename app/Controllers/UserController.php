@@ -5,7 +5,16 @@ class UserController extends BaseController
 {
     public function dashboard()
     {
-        return view('user/dashboard');  // Loads app/Views/user/dashboard.php
+        $session = session();
+        $userData = [
+            'userName' => $session->get('userName'),  // Access user name from session
+            'userId' => $session->get('userId'),      // Access user ID from session
+            // Add other data if needed
+        ];
+
+        // Pass the user data to the view
+        return view('user/dashboard', $userData);
+
     }
 
     public function profile()

@@ -8,9 +8,9 @@ class Login extends BaseController
     }
     public function login()
     {
-        if (session()->get('isLoggedIn')) {
-            return redirect()->to('/admin/dashboard'); // Redirect logged-in users to the dashboard
-        }
+        // if (session()->get('isLoggedIn')) {
+        //     return redirect()->to('/admin/dashboard'); // Redirect logged-in users to the dashboard
+        // }
 
         $session = session();
         $name = $this->request->getPost('name');
@@ -31,7 +31,7 @@ class Login extends BaseController
                     //  'userRole' => $user['role'] // Optional: if you have roles (e.g., admin)
                 ]);
 
-                return redirect()->to('/admin/dashboard'); // Redirect to the dashboard or home
+                return redirect()->to('user/dashboard'); // Redirect to the dashboard or home
             } else {
                 // Incorrect password
                 $session->setFlashdata('error', 'Invalid password.');

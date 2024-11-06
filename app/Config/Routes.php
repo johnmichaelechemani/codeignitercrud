@@ -21,8 +21,12 @@ $routes->group('auth', function ($routes) {
 });
 // Handle form submission
 
+//
+$routes->get('auth/logout', 'Logout::logout');
+
+
 //user
-$routes->group('user', function ($routes) {
+$routes->group('user', ['filter' => 'auth'], function ($routes) {
     $routes->get('dashboard', 'UserController::dashboard');      // User dashboard
     $routes->get('profile', 'UserController::profile');          // User profile
     $routes->post('update-profile', 'UserController::update');   // Update profile
@@ -34,3 +38,4 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->post('create-user', 'AdminController::createUser'); // Create a new user
     $routes->get('settings', 'AdminController::settings');     // Admin settings
 });
+
