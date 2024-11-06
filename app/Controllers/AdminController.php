@@ -9,7 +9,7 @@ class AdminController extends BaseController
         $model = new TaskModel();
 
         // Fetch all users from the database
-        $data['tasks'] = $model->findAll(); // You can also use other methods like where() for filtering
+        $data['tasks'] = $model->findAll();
 
         return view('admin/dashboard', $data); // Pass the user data to the view
     }
@@ -27,5 +27,25 @@ class AdminController extends BaseController
     public function settings()
     {
         return view('admin/settings');    // Loads app/Views/admin/settings.php
+    }
+
+    public function indexTask()
+    {
+        return view('admin/dashboard');
+    }
+    // Handle registration form submission  
+    public function postTask()
+    {
+        $task = $this->request->getPost('name');
+
+        if ($task) {
+            // Save the task to the database (assuming you have a Task model)
+            $taskModel = new TaskModel();
+            $taskModel->save(['name' => $task]);
+
+            return redirect()->to('admin/dashboard')->with('success', 'Task added successfully.');
+        }
+
+        return redirect()->back()->with('error', 'Task could not be added.');
     }
 }

@@ -36,5 +36,8 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->get('users', 'AdminController::listUsers');
     $routes->post('create-user', 'AdminController::createUser');
     $routes->get('settings', 'AdminController::settings');
+    // add task
+    $routes->get('dashboard', 'AdminController::indexTask');
+    $routes->post('dashboard', 'AdminController::postTask');
 });
 

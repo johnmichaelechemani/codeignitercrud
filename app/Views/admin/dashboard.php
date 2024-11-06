@@ -4,6 +4,26 @@
 <div class="flex justify-center items-center">
     <div>
         <h2 class="text-xl text-blue-500">Admin Dashboard</h2>
+        <?php if (session()->getFlashdata('success')): ?>
+            <div class="text-green-500">
+                <?= session()->getFlashdata('success') ?>
+            </div>
+        <?php elseif (session()->getFlashdata('error')): ?>
+            <div class="text-red-500">
+                <?= session()->getFlashdata('error') ?>
+            </div>
+        <?php endif; ?>
+
+        <div>
+            <form action="<?= site_url('admin/dashboard') ?>" method="post"
+                class="flex justify-start items-center gap-2">
+                <input type="text" name="name" required class="border border-gray-500 px-2 py-1 rounded-md"
+                    placeholder="Task">
+                <button type="submit"
+                    class="px-4 py-2 my-2 w-full bg-blue-500 text-white rounded-md font-semibold text-sm">Add
+                    Task</button>
+            </form>
+        </div>
         <div>
             <table class="border-collapse border border-slate-500 ">
                 <thead>

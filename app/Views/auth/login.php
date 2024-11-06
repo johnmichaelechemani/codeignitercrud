@@ -16,8 +16,8 @@
 
                 <?= csrf_field() ?>
                 <div>
-                    <input type="text" required name="name" class="border border-gray-500 p-2 rounded-md"
-                        placeholder="name">
+                        <input type="text" required name="name" class="border border-gray-500 p-2 rounded-md"
+                            placeholder="name">
                     <input type="text" required name="password" class="border border-gray-500 p-2 rounded-md"
                         placeholder="password">
                 </div>
