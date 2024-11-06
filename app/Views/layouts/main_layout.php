@@ -20,6 +20,8 @@
     <div class="flex justify-center items-center gap-4 my-5">
         <a href="<?= site_url('user/dashboard') ?>" class="p-2 bg-gray-500/20 rounded-md">User Dashboard</a>
         <a href="<?= site_url('admin/dashboard') ?>" class="p-2 bg-gray-500/20 rounded-md">Admin Dashboard</a>
+        <a href="<?= site_url('auth/login') ?>" class="p-2 bg-gray-500/20 rounded-md">Login</a>
+        <a href="<?= site_url('auth/register') ?>" class="p-2 bg-gray-500/20 rounded-md">Register</a>
     </div>
     <main>
         <?= $this->renderSection('content') ?>

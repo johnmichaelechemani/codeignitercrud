@@ -9,9 +9,17 @@ $routes->get('/', 'Home::index');
 //test db
 $routes->get('db-test', 'DatabaseTest::index');
 
-//login
-$routes->get('login', 'Login::login');      // Display the login form
-$routes->post('login', 'Login::login');     // Handle login form submission
+
+
+$routes->group('auth', function ($routes) {
+    //login
+    $routes->get('login', 'Login::index');      // Display the login form
+    $routes->post('login', 'Login::login');     // Handle login form submission
+    //register
+    $routes->get('register', 'Register::index');      // Display the form
+    $routes->post('register', 'Register::store');
+});
+// Handle form submission
 
 //user
 $routes->group('user', function ($routes) {

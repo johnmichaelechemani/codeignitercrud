@@ -2,8 +2,16 @@
 namespace App\Controllers;
 class Login extends BaseController
 {
+    public function index()
+    {
+        return view('auth/login'); // This view will contain the registration form
+    }
     public function login()
     {
+        if (session()->get('isLoggedIn')) {
+            return redirect()->to('/admin/dashboard'); // Redirect logged-in users to the dashboard
+        }
+
         $session = session();
         $name = $this->request->getPost('name');
         $password = $this->request->getPost('password');
@@ -23,7 +31,7 @@ class Login extends BaseController
                     //  'userRole' => $user['role'] // Optional: if you have roles (e.g., admin)
                 ]);
 
-                return redirect()->to('/dashboard'); // Redirect to the dashboard or home
+                return redirect()->to('/admin/dashboard'); // Redirect to the dashboard or home
             } else {
                 // Incorrect password
                 $session->setFlashdata('error', 'Invalid password.');
