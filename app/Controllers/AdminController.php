@@ -4,36 +4,11 @@ use App\Models\TaskModel; // Make sure to import the UserModel
 
 class AdminController extends BaseController
 {
-    public function dashboard()
-    {
-        $model = new TaskModel();
-
-        // Fetch all users from the database
-        $data['tasks'] = $model->findAll();
-
-        return view('admin/dashboard', $data); // Pass the user data to the view
-    }
-
-    public function listUsers()
-    {
-        return view('admin/list_users');  // Loads app/Views/admin/list_users.php
-    }
-
-    public function createUser()
-    {
-        return view('admin/create_user'); // Loads app/Views/admin/create_user.php
-    }
-
-    public function settings()
-    {
-        return view('admin/settings');    // Loads app/Views/admin/settings.php
-    }
-
     public function indexTask()
     {
         return view('admin/dashboard');
     }
-    // Handle registration form submission  
+
     public function postTask()
     {
         $task = $this->request->getPost('name');
@@ -47,5 +22,30 @@ class AdminController extends BaseController
         }
 
         return redirect()->back()->with('error', 'Task could not be added.');
+    }
+
+    public function dashboard()
+    {
+        $model = new TaskModel();
+
+        // Fetch all users from the database
+        $data['tasks'] = $model->findAll();
+
+        return view('admin/dashboard', $data);
+    }
+
+    public function listUsers()
+    {
+        return view('admin/list_users');
+    }
+
+    public function createUser()
+    {
+        return view('admin/create_user');
+    }
+
+    public function settings()
+    {
+        return view('admin/settings');
     }
 }
