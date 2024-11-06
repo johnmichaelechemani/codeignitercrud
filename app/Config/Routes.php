@@ -27,17 +27,20 @@ $routes->group('auth', function ($routes) {
 //user
 $routes->group('user', ['filter' => 'auth'], function ($routes) {
     $routes->get('dashboard', 'UserController::dashboard');
-    $routes->get('profile', 'UserController::profile');
-    $routes->post('update-profile', 'UserController::update');
+
 });
 //admin
 $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->get('dashboard', 'AdminController::dashboard');
-    $routes->get('users', 'AdminController::listUsers');
-    $routes->post('create-user', 'AdminController::createUser');
-    $routes->get('settings', 'AdminController::settings');
     // add task
     $routes->get('dashboard', 'AdminController::indexTask');
     $routes->post('dashboard', 'AdminController::postTask');
+
+    // manage tasks
+    // Admin Task Management
+    // $routes->get('admin/edit_task/(:num)', 'AdminController::editTask/$1');
+    // $routes->post('admin/update_task/(:num)', 'AdminController::updateTask/$1');
+    $routes->get('delete_task/(:num)', 'AdminController::deleteTask/$1');
+
 });
 

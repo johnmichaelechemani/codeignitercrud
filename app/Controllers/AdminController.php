@@ -23,6 +23,13 @@ class AdminController extends BaseController
 
         return redirect()->back()->with('error', 'Task could not be added.');
     }
+    public function deleteTask($id)
+    {
+        $taskModel = new TaskModel();
+        $taskModel->delete($id);
+
+        return redirect()->to('admin/dashboard')->with('success', 'Task deleted successfully.');
+    }
 
     public function dashboard()
     {
