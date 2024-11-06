@@ -7,7 +7,8 @@
     <meta name="description" content="The small framework with powerful features">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="/favicon.ico">
-    <link href="<?= base_url('css/output.css') ?>" rel="stylesheet">
+    <!-- <link href="<?= base_url('css/output.css') ?>" rel="stylesheet"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
