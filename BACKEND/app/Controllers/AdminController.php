@@ -33,24 +33,18 @@ class AdminController extends BaseController
 
     public function dashboard()
     {
-        if ($this->request->getMethod() === 'options') {
-            // If the request method is OPTIONS, set CORS headers and return immediately
-            return $this->response
-                ->setHeader('Access-Control-Allow-Origin', '*')
-                ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-                ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
-                ->setStatusCode(200);
-        }
-
         $model = new TaskModel();
+
+        // Fetch all tasks from the database
         $tasks = $model->findAll();
 
-        // Set CORS headers for the actual response
-        return $this->response
-            ->setHeader('Access-Control-Allow-Origin', '*')
-            ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-            ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
-            ->setJSON($tasks);
+        $this->response->setHeader('Access-Control-Allow-Origin', '*');
+        $this->response->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        $this->response->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+
+
+        // Return the tasks as JSON response
+        return $this->response->setJSON($tasks);
     }
 
     public function listUsers()
