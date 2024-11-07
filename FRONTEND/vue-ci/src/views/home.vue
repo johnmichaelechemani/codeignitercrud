@@ -14,8 +14,5 @@
       >Register</RouterLink
     >
   </nav>
-  <main>
-    <RouterView />
-  </main>
 </template>
 <script setup></script>
