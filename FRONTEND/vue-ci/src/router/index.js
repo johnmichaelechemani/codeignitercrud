@@ -13,34 +13,33 @@ const router = createRouter({
     {
       path: "/",
       name: "",
+      redirect: "home",
       component: MainLayout,
-      children: [
-        {
-          path: "",
-          name: "home",
-          component: Home,
-        },
-        {
-          path: "login",
-          name: "login",
-          component: Login,
-        },
-        {
-          path: "register",
-          name: "register",
-          component: Register,
-        },
-        {
-          path: "user",
-          name: "user",
-          component: userDashboard,
-        },
-        {
-          path: "admin",
-          name: "admin",
-          component: adminDashboard,
-        },
-      ],
+    },
+    {
+      path: "/home",
+      name: "home",
+      component: Home,
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: Login,
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: Register,
+    },
+    {
+      path: "/user",
+      name: "user",
+      component: userDashboard,
+    },
+    {
+      path: "/admin",
+      name: "admin",
+      component: adminDashboard,
     },
   ],
 });
