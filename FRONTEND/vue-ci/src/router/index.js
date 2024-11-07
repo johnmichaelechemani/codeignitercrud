@@ -1,37 +1,44 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+import MainLayout from "../layouts/MainLayout.vue";
+import Login from "../views/auth/Login.vue";
+import Register from "../views/auth/Register.vue";
+import Home from "../views/Home.vue";
+import userDashboard from "../views/user/Dashboard.vue";
+import adminDashboard from "../views/admin/Dashboard.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
       name: "",
-      component: () => import("../layouts/MainLayout.vue"),
+      component: MainLayout,
       children: [
         {
-          path: "home",
+          path: "",
           name: "home",
-          component: () => import("../views/Home.vue"),
+          component: Home,
         },
         {
           path: "login",
           name: "login",
-          component: () => import("../views/auth/Login.vue"),
+          component: Login,
         },
         {
           path: "register",
           name: "register",
-          component: () => import("../views/auth/Register.vue"),
+          component: Register,
         },
         {
           path: "user",
           name: "user",
-          component: () => import("../views/user/Dashboard.vue"),
+          component: userDashboard,
         },
         {
           path: "admin",
           name: "admin",
-          component: () => import("../views/admin/Dashboard.vue"),
+          component: adminDashboard,
         },
       ],
     },
