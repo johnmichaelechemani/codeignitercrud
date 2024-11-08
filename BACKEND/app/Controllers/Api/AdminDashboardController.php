@@ -28,5 +28,20 @@ class AdminDashboardController extends ResourceController
             return $this->fail($model->errors(), 400);
         }
     }
+    public function delete($id = null)
+    {
+        $model = new TaskModel();
+        $task = $model->find($id);
+
+        if ($task) {
+            if ($model->delete($id)) {
+                return $this->respondDeleted($task);
+            } else {
+                return $this->failServerError('Could not delete task.');
+            }
+        } else {
+            return $this->failNotFound('Task not found.');
+        }
+    }
 
 }

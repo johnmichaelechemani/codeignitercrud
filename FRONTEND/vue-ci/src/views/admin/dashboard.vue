@@ -28,7 +28,10 @@
                 <button class="btn btn-sm btn-success">
                   <Icon icon="ic:round-edit" width="20" height="20" />
                 </button>
-                <button class="btn btn-sm btn-error">
+                <button
+                  class="btn btn-sm btn-error"
+                  @click="deleteTask(task.id)"
+                >
                   <Icon
                     icon="material-symbols:delete-sharp"
                     width="20"
@@ -79,6 +82,16 @@ const fetchData = async () => {
     console.error("Error fetching data:", error);
   }
 };
+
+const deleteTask = async (id) => {
+  try {
+    await axios.delete(`${URL}dashboard/${id}`);
+    data.value = data.value.filter((task) => task.id !== id);
+  } catch (err) {
+    console.error("Error deleting task:", err);
+  }
+};
+
 onMounted(() => {
   fetchData();
 });
