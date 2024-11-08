@@ -9,11 +9,11 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
-const URL = "http://localhost:8080/index.php/";
+const URL = "http://localhost:8080/";
 const data = ref({});
 const getData = async () => {
   try {
-    const response = await axios.get(`${URL}admin/dashboard`);
+    const response = await axios.get(`${URL}api/dashboard`);
 
     data.value = response.data;
     console.log(data.value);
