@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="item in data" :key="item.id">
-      {{ item.name }}
+      {{ item }}
     </div>
   </div>
 </template>
@@ -9,11 +9,11 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
-const URL = "http://localhost:8080/";
+const URL = "http://localhost:8080/index.php/";
 const data = ref({});
 const getData = async () => {
   try {
-    const response = await axios.get(`${URL}api/dashboard`);
+    const response = await axios.get(`${URL}admin/dashboard`);
 
     data.value = response.data;
     console.log(data.value);

@@ -26,18 +26,15 @@ $routes->group('user', ['filter' => 'auth'], function ($routes) {
 });
 //admin
 
-// $routes->group('api', ['namespace' => 'App\Controllers\Api'], function ($routes) {
-//     $routes->get('dashboard', 'DashboardController::index');
-// });
 
-$routes->group('api', ['filter' => 'auth'], ['namespace' => 'App\Controllers\Api'], function ($routes) {
-    $routes->get('dashboard', 'AdminController::index');
+$routes->group('admin', ['filter' => 'auth'], function ($routes) {
+    $routes->get('dashboard', 'AdminController::dashboard');
     // Admin Task Management
-    // $routes->get('dashboard', 'AdminController::indexTask');
-    // $routes->post('dashboard', 'AdminController::postTask');
+    $routes->get('dashboard', 'AdminController::indexTask');
+    $routes->post('dashboard', 'AdminController::postTask');
     // $routes->get('admin/edit_task/(:num)', 'AdminController::editTask/$1');
     // $routes->post('admin/update_task/(:num)', 'AdminController::updateTask/$1');
-    //$routes->get('delete_task/(:num)', 'AdminController::deleteTask/$1');
+    $routes->get('delete_task/(:num)', 'AdminController::deleteTask/$1');
 
 });
 
