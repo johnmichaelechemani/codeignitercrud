@@ -1,46 +1,72 @@
 <template>
   <div class="flex justify-center items-center">
-    <table class="border-collapse border border-slate-500">
-      <thead>
-        <tr>
-          <th class="border border-slate-600/50 px-4 py-2">Id</th>
-          <th class="border border-slate-600/50 px-4 py-2">Name</th>
-          <th rowspan="2" class="border border-slate-600/50 px-4 py-2">
-            Action
-          </th>
-        </tr>
-      </thead>
-      <tbody v-for="item in data" :key="item.id">
-        <tr>
-          <td class="border border-slate-700/20">{{ item.id }}</td>
-          <td class="border border-slate-700/20">{{ item.name }}</td>
-          <td class="flex justify-center items-center gap-2">
-            <button
-              class="px-4 py-2 my-2 w-full bg-green-500 text-white rounded-md font-semibold text-sm"
-            >
-              Edit
-            </button>
-            <button
-              class="px-4 py-2 my-2 w-full bg-red-500 text-white rounded-md font-semibold text-sm"
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div>
+      <div class="flex justify-center items-center gap-2 my-3">
+        <input
+          type="text"
+          placeholder="Task"
+          class="input input-bordered w-full max-w-xs"
+          v-model="task"
+        />
+        <button @click="createTask()" class="btn btn-info">Add</button>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th rowspan="2">Action</th>
+            </tr>
+          </thead>
+          <tbody v-for="item in data" :key="item.id">
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.name }}</td>
+              <td class="flex justify-center items-center gap-2">
+                <button class="btn btn-sm btn-success">
+                  <Icon icon="ic:round-edit" width="20" height="20" />
+                </button>
+                <button class="btn btn-sm btn-error">
+                  <Icon
+                    icon="material-symbols:delete-sharp"
+                    width="20"
+                    height="20"
+                  />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
+import { Icon } from "@iconify/vue";
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
 const URL = "http://localhost:8080/api/";
 const data = ref({});
-const getData = async () => {
+const task = ref("");
+
+const createTask = async () => {
+  console.log(task.value);
+  try {
+    const response = await axios.post(`${URL}dashboard`, {
+      name: task.value,
+    });
+    data.value.push(response.data);
+    task.value = "";
+  } catch (err) {
+    console.error("Error creating task:", err);
+  }
+};
+
+const fetchData = async () => {
   try {
     const response = await axios.get(`${URL}dashboard`);
-
     data.value = response.data;
     console.log(data.value);
   } catch (error) {
@@ -48,6 +74,6 @@ const getData = async () => {
   }
 };
 onMounted(() => {
-  getData();
+  fetchData();
 });
 </script>

@@ -41,4 +41,5 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 // app/Config/Routes.php
 $routes->group('api', ['namespace' => 'App\Controllers\Api'], function ($routes) {
     $routes->get('dashboard', 'AdminDashboardController::index');
+    $routes->post('dashboard', 'AdminDashboardController::create');
 });
