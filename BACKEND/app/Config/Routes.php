@@ -44,3 +44,4 @@ $routes->group('api', ['namespace' => 'App\Controllers\Api'], function ($routes)
     $routes->post('dashboard', 'AdminDashboardController::create');
     $routes->delete('dashboard', 'AdminDashboardController::delete/$1');
 });
+
