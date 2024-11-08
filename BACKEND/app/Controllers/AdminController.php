@@ -35,11 +35,9 @@ class AdminController extends BaseController
     {
         $model = new TaskModel();
 
-        // Fetch all tasks from the database
-        $tasks = $model->findAll();
+        $data['tasks'] = $model->findAll();
 
-        // Return the tasks as JSON response
-        return $this->response->setJSON($tasks);
+        return view('admin/dashboard', $data);
     }
 
     public function listUsers()
