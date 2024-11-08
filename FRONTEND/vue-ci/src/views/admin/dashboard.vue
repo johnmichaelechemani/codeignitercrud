@@ -4,6 +4,7 @@
       <div class="flex justify-center items-center gap-2 my-3">
         <input
           type="text"
+          required
           placeholder="Task"
           class="input input-bordered w-full max-w-xs"
           v-model="task"
@@ -52,11 +53,16 @@ const data = ref({});
 const task = ref("");
 
 const createTask = async () => {
+  if (task.value.trim() === "") {
+    console.warn("Task name is empty.");
+    return;
+  }
   console.log(task.value);
   try {
     const response = await axios.post(`${URL}dashboard`, {
       name: task.value,
     });
+    console.log("Newly created task:", response.data);
     data.value.push(response.data);
     task.value = "";
   } catch (err) {
