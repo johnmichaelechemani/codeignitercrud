@@ -12,4 +12,14 @@ class TaskController extends Controller
         $tasks = TaskModel::all(); // Retrieve all tasks from the database
         return view('task', compact('tasks')); // Pass the tasks to the users index view
     }
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255'
+        ]);
+
+        TaskModel::create($validatedData);
+
+        return redirect()->back()->with('success', 'Task created successfully');
+    }
 }

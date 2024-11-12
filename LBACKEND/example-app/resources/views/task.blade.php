@@ -912,9 +912,30 @@
             <div>
                 <h1>TEST FROM THE BACKEND TASK ROUTE</h1>
                 <div class="my-5">
+                    @if (session('success'))
+                        <div class="px-4 my-3 rounded-xl py-2 bg-green-500/10 border border-green-500/20 text-green-500">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     @foreach($tasks as $task)
-                        <p>{{ $task->name }}</p>
+                        <div class="flex justify-between py-2 items-center">
+                            <p>{{ $task->name }}</p>
+                            <div>
+                                <button
+                                    class="text-green-500 px-4 py-1 bg-green-500/10 border border-green-500/20">E</button>
+                                <button class="text-red-500 px-4 py-1 bg-red-500/10 border border-red-500/20">D</button>
+                            </div>
+                        </div>
                     @endforeach
+                </div>
+                <div class="my-5 bg-gray-50 text-black/50 dark:bg-black dark:text-white">
+                    <form action="{{ route('tasks.store') }}" method="POST">
+                        @csrf
+                        <div class="flex justify-start  ">
+                            <input type="text" name="name" required class="p-2 w-full rounded-l-xl text-gray-800">
+                            <button type="submit" class="px-4 py-2 rounded-r-xl bg-blue-500">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
