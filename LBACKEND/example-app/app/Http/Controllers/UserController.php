@@ -1,19 +1,17 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Models\UserModel; // Assuming you have a Task model
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    // Method to get users and pass them to the welcome view
     public function index()
     {
-        // Fetch all tasks from the database
-        $tasks = DB::table('task')->get();
+        // Retrieve task data from the database
+        $users = UserModel::all(); // You can apply filters or pagination as needed
 
-        // Return the welcome view with the tasks data
-        return view('welcome', ['tasks' => $tasks]);
+        // Pass the task data to the view
+        return view('welcome', compact('users'));
     }
 }

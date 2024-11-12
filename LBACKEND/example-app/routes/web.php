@@ -1,13 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\TaskController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/test-db', function () {
-    $users = DB::select('SELECT * FROM task');
-    return $users;
-});
+Route::get('/', [UserController::class, 'index']);
+Route::get('/tasks', [TaskController::class, 'index']);
