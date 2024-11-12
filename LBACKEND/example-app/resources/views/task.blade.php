@@ -10,7 +10,6 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
     <!-- Styles / Scripts -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -918,12 +917,19 @@
                         </div>
                     @endif
                     @foreach($tasks as $task)
-                        <div class="flex justify-between py-2 items-center">
-                            <p>{{ $task->name }}</p>
-                            <div>
-                                <button
+                        <div class="flex justify-between py-1 items-center">
+                            <div class="flex justify-center items-center gap-2">
+                                <p>{{ $task->id }}</p>
+                                <p>{{ $task->name }}</p>
+                            </div>
+                            <div class="flex justify-center items-center gap-2">
+                                <button onclick="editingTask({{ $task->id }},'{{ $task->name }}' )"
                                     class="text-green-500 px-4 py-1 bg-green-500/10 border border-green-500/20">E</button>
-                                <button class="text-red-500 px-4 py-1 bg-red-500/10 border border-red-500/20">D</button>
+                                <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="text-red-500 px-4 py-1 bg-red-500/10 border border-red-500/20">D</button>
+                                </form>
                             </div>
                         </div>
                     @endforeach
@@ -932,7 +938,7 @@
                     <form action="{{ route('tasks.store') }}" method="POST">
                         @csrf
                         <div class="flex justify-start  ">
-                            <input type="text" name="name" required class="p-2 w-full rounded-l-xl text-gray-800">
+                            <input type="text" name="name" required class="p-2  w-full rounded-l-xl text-gray-800">
                             <button type="submit" class="px-4 py-2 rounded-r-xl bg-blue-500">Submit</button>
                         </div>
                     </form>
@@ -940,6 +946,54 @@
             </div>
         </div>
     </div>
+    <!-- edit modal -->
+    <div id="modal" class="fixed hidden inset-0 bg-black backdrop-blur-xl bg-opacity-50 items-center justify-center">
+        <div class="bg-black border border-gray-500/50  p-6 rounded-lg">
+            <h2 class="text-xl mb-4">Edit Task</h2>
+
+            <form id="editForm" method="POST">
+                @csrf
+                @method('PUT')
+                <input id="name" type="text" name="name" required class="border rounded-xl text-black p-2 w-full">
+                <div class="mt-4 flex justify-end">
+                    <button type="button" onclick="showModal()"
+                        class="mr-2 px-4 py-2 rounded-xl border border-gray-500/20 text-gray-300">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 rounded-xl text-white">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <script>
+
+        const modal = document.getElementById('modal')
+        let inputValue = document.getElementById('name')
+        const editForm = document.getElementById('editForm');
+        const baseUrl = '/tasks/'
+        function editingTask(taskId, name) {
+            if (modal) {
+                editForm.action = `${baseUrl}${taskId}`;
+                inputValue.value = name
+                modal.classList.remove('hidden')
+                modal.classList.add('flex')
+            }
+            console.log("Editing task with ID:", taskId);
+            console.log("Editing task with name:", name);
+        }
+        const showModal = () => {
+            if (modal) {
+                inputValue.value = ''
+                modal.classList.add('hidden')
+                modal.classList.remove('flex')
+            }
+        }
+
+    </script>
+
 </body>
 
 </html>
