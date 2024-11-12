@@ -7,11 +7,7 @@
 
 <body>
     <h1>Users List</h1>
-    <ul>
-        @foreach($users as $user)
-            <li>{{ $user->name }}</li>
-        @endforeach
-    </ul>
+    hey
 </body>
 
 </html>

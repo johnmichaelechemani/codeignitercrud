@@ -1,8 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/test-db', function () {
+    $users = DB::select('SELECT * FROM task');
+    return $users;
 });
