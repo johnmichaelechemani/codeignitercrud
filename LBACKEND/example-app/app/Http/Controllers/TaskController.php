@@ -10,8 +10,12 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = TaskModel::all(); // Retrieve all tasks from the database
-        return view('task', compact('tasks')); // Pass the tasks to the users index view
+        try {
+            $tasks = TaskModel::all();
+            return view('task', compact('tasks'));
+        } catch (\Exception) {
+            return redirect()->back()->with('error', 'Unable to fetch tasks');
+        }
     }
     public function store(Request $request)
     {
