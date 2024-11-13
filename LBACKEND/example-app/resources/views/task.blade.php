@@ -918,7 +918,7 @@
                     @endif
                     @if (session('error'))
                         <div class="px-4 my-3 rounded-xl py-2 bg-red-500/10 border border-red-500/20 text-red-500">
-                            {{ session(key: 'error') }}
+                            {{ session('error') }}
                         </div>
                     @endif
                     @foreach($tasks as $task)
