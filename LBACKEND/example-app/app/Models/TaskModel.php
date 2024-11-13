@@ -15,6 +15,5 @@ class TaskModel extends Model
     // Specify the fillable fields
     protected $fillable = [
         'name',
-
     ];
 }

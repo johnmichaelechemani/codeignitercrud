@@ -907,7 +907,7 @@
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-        <div class="flex justify-center items-center">
+        <div class="flex justify-center items-center h-screen">
             <div>
                 <h1>TEST FROM THE BACKEND TASK ROUTE</h1>
                 <div class="my-5">
@@ -922,13 +922,14 @@
                         </div>
                     @endif
                     @foreach($tasks as $task)
-                        <div class="flex justify-between py-1 items-center">
-                            <div class="flex justify-center items-center gap-2">
-                                <p>{{ $task->id }}</p>
-                                <p>{{ $task->name }}</p>
+                        <div class="flex justify-between py-1 gap-2 items-center">
+                            <div class="flex justify-center items-center">
+                                <span
+                                    class='w-10 rounded-l-xl py-1 text-center bg-blue-500/10 border border-blue-500/20 text-blue-500'>{{ $task->id }}</span>
+                                <div class=" border rounded-r-xl px-2 py-1 border-gray-500/20 ">{{ $task->name }}</div>
                             </div>
                             <div class="flex justify-center items-center gap-2">
-                                <button onclick="editingTask({{ $task->id }},'{{ $task->name }}' )"
+                                <button onclick="editingTask('{{ $task->id }}','{{ $task->name }}' )"
                                     class="text-green-500 px-4 py-1 bg-green-500/10 border border-green-500/20">E</button>
                                 <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
                                     @csrf
